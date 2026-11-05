@@ -1,0 +1,95 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function own(uid) {
+      return request.auth != null && request.auth.uid == uid && request.auth.token.email_verified == true;
+    }
+    function rootPath(uid) { return /databases/$(database)/documents/users/$(uid); }
+    function changed(uid) {
+      return getAfter(rootPath(uid)).data.revision ==
+        (exists(rootPath(uid)) ? get(rootPath(uid)).data.revision + 1 : 1)
+        && getAfter(rootPath(uid)).data.changedAt == request.time;
+    }
+    function text(value, maximum) { return value is string && value.size() <= maximum; }
+    function named(value) { return text(value, 120) && value.size() > 0; }
+    function positive(value) { return value is number && value > 0 && value - value == 0; }
+    function nonnegative(value) { return value is number && value >= 0 && value - value == 0; }
+    function date(value) {
+      return value is string && value.matches('^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$');
+    }
+    function nutrients(value) {
+      return value is map && value.keys().hasAll(['calories', 'protein', 'carbs', 'fat', 'fiber', 'sugar'])
+        && value.keys().hasOnly(['calories', 'protein', 'carbs', 'fat', 'fiber', 'sugar'])
+        && nonnegative(value.calories) && nonnegative(value.protein) && nonnegative(value.carbs)
+        && nonnegative(value.fat) && nonnegative(value.fiber) && nonnegative(value.sugar);
+    }
+    function fields(data, extra) {
+      return data.keys().hasOnly(['id', 'ownerId', 'updatedAt', 'revision'].concat(extra));
+    }
+    function envelope(uid, recordId, data) {
+      return data.id == recordId && text(data.id, 200) && data.ownerId == uid
+        && text(data.updatedAt, 40) && data.revision is int
+        && data.revision == getAfter(rootPath(uid)).data.revision;
+    }
+    function valid(table, recordId, data) {
+      return (table == 'foods'
+        && fields(data, ['name','category','preparation','notes','source','unit','basis','servingName','servingSize','nutrients','favorite','archived'])
+        && (!('category' in data) || text(data.category, 80))
+        && (!('preparation' in data) || text(data.preparation, 120))
+        && (!('notes' in data) || text(data.notes, 2000))
+        && (!('source' in data) || text(data.source, 500))
+        && named(data.name) && data.unit in ['g','ml','serving'] && positive(data.basis)
+        && text(data.servingName, 2000) && (!('servingSize' in data) || positive(data.servingSize))
+        && nutrients(data.nutrients) && data.favorite is bool && data.archived is bool)
+      || (table == 'exercises'
+        && fields(data, ['name','muscle','notes','archived']) && named(data.name) && named(data.muscle)
+        && text(data.notes, 2000) && data.archived is bool)
+      || (table == 'categories'
+        && fields(data, ['name','archived','order']) && named(data.name) && data.archived is bool
+        && (!('order' in data) || nonnegative(data.order)))
+      || (table == 'meals'
+        && fields(data, ['date','time','categoryId','categoryName','foodId','foodName','quantity','unit','basis','basisNutrients','nutrients'])
+        && date(data.date) && data.time is string && data.time.matches('^([01][0-9]|2[0-3]):[0-5][0-9]$')
+        && text(data.categoryId, 200) && named(data.categoryName) && text(data.foodId, 200) && named(data.foodName)
+        && positive(data.quantity) && text(data.unit, 2000) && positive(data.basis)
+        && nutrients(data.basisNutrients) && nutrients(data.nutrients))
+      || (table == 'workouts'
+        && fields(data, ['name','date','duration','calories','notes','exercises'])
+        && named(data.name) && date(data.date) && positive(data.duration)
+        && (!('calories' in data) || nonnegative(data.calories)) && text(data.notes, 4000)
+        && data.exercises is list && data.exercises.size() > 0 && data.exercises.size() <= 500)
+      || (table == 'routines' && fields(data, ['name','exercises']) && named(data.name)
+        && data.exercises is list && data.exercises.size() > 0 && data.exercises.size() <= 500)
+      || (table == 'goals' && fields(data, ['date','nutrients'])
+        && date(data.date) && recordId == data.date && nutrients(data.nutrients))
+      || (table == 'weights' && fields(data, ['date','weight'])
+        && date(data.date) && recordId == data.date && positive(data.weight));
+    }
+    match /users/{uid} {
+      allow read: if own(uid);
+      allow create, update: if own(uid)
+        && request.resource.data.keys().hasOnly(['revision','changedAt','demoLoaded'])
+        && request.resource.data.revision is int && request.resource.data.demoLoaded is bool
+        && changed(uid);
+      match /{table}/{recordId} {
+        allow read: if own(uid) && table in ['foods','exercises','categories','meals','workouts','routines','goals','weights','imports','meta'];
+        allow create, update: if own(uid) && changed(uid)
+          && envelope(uid, recordId, request.resource.data) && valid(table, recordId, request.resource.data);
+        allow delete: if own(uid) && changed(uid)
+          && table in ['foods','exercises','categories','meals','workouts','routines','goals','weights','imports','meta'];
+      }
+      match /imports/{operation} {
+        allow create: if own(uid) && changed(uid)
+          && request.resource.data.keys().hasOnly(['added','skipped','conflicts'])
+          && request.resource.data.added is int && request.resource.data.added >= 0 && request.resource.data.added <= 100
+          && request.resource.data.skipped is int && request.resource.data.skipped >= 0 && request.resource.data.skipped <= 100
+          && request.resource.data.conflicts is int && request.resource.data.conflicts >= 0 && request.resource.data.conflicts <= 100;
+      }
+      match /meta/{operation} {
+        allow create: if own(uid) && changed(uid) && operation == 'demo-plan'
+          && request.resource.data.keys().hasOnly(['journal']) && request.resource.data.journal is map
+          && request.resource.data.journal.keys().hasOnly(['foods','exercises','categories','meals','workouts','routines','goals','weights']);
+      }
+    }
+  }
+}

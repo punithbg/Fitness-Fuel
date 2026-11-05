@@ -1,0 +1,237 @@
+.meal-summary {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 17px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+}
+.meal-summary > div {
+  flex: 1;
+  min-width: 0;
+}
+.meal-summary h3 {
+  font-size: 14px;
+}
+.meal-summary p {
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 4px;
+}
+.meal-summary > strong {
+  font-size: 15px;
+  text-align: right;
+}
+.meal-summary small {
+  display: block;
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--muted);
+}
+.meal-summary > svg {
+  color: var(--muted);
+}
+.meal-visual {
+  width: 45px;
+  height: 45px;
+  border-radius: 7px;
+  flex-shrink: 0;
+  background: var(--gold-bg);
+  color: var(--muted);
+  display: grid;
+  place-items: center;
+}
+.meal-section {
+  padding: 24px 0 20px;
+  border-bottom: 1px solid var(--line);
+}
+.meal-section:first-child {
+  padding-top: 0;
+}
+.meal-section .section-heading {
+  margin-bottom: 18px;
+}
+.meal-section h2 {
+  font-size: 19px;
+}
+.meal-section .muted {
+  font-size: 12px;
+}
+.empty-meal {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  background: var(--subtle-surface);
+  border: 1px dashed var(--line);
+  min-height: 65px;
+  width: 100%;
+  font-size: 13px;
+}
+.empty-meal:hover {
+  background: var(--subtle-surface);
+}
+.food-table-header,
+.food-row {
+  display: grid;
+  grid-template-columns:
+    minmax(140px, 2.3fr) repeat(5, minmax(50px, 0.7fr)) minmax(65px, 0.8fr)
+    76px;
+  gap: 12px;
+  align-items: center;
+}
+.food-table-header {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 6px 0 13px;
+}
+.food-row {
+  padding: 17px 0;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+}
+.food-name strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.food-name > span {
+  font-size: 11px;
+  color: var(--muted);
+  display: block;
+  margin-top: 3px;
+}
+.food-macro {
+  color: var(--muted);
+}
+.food-macro small {
+  display: none;
+}
+.food-energy {
+  font-size: 14px;
+}
+.food-energy small {
+  display: none;
+}
+.nutrition-preview {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+  background: var(--subtle-surface);
+  padding: 16px;
+  border-radius: 6px;
+}
+.nutrition-preview span {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+}
+.nutrition-preview strong {
+  font-size: 17px;
+  display: block;
+  margin-top: 5px;
+}
+.nutrition-preview small {
+  font-size: 10px;
+  font-weight: 400;
+}
+.entry-name {
+  margin-bottom: 20px;
+}
+@media (max-width: 1200px) {
+  .food-table-header,
+  .food-row {
+    gap: 8px;
+    grid-template-columns: minmax(130px, 2fr) repeat(5, minmax(42px, 0.65fr)) 60px 72px;
+  }
+}
+@media (max-width: 1000px) {
+  .food-table-header {
+    display: none;
+  }
+  .food-row {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) 74px;
+    gap: 8px 10px;
+  }
+  .food-name {
+    grid-column: 1/4;
+  }
+  .food-energy {
+    grid-column: 4;
+    grid-row: 1;
+    text-align: right;
+  }
+  .food-energy small {
+    display: inline;
+    font-size: 10px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+  .food-row > .row-actions {
+    grid-column: 5;
+    grid-row: 1;
+  }
+  .food-macro {
+    grid-row: 2;
+    font-size: 11px;
+  }
+  .food-macro small {
+    display: inline;
+    font-size: 10px;
+  }
+}
+@media (max-width: 700px) {
+  .food-row {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    padding: 16px 0;
+    gap: 12px 8px;
+  }
+  .food-name {
+    grid-column: 1/5;
+  }
+  .food-energy {
+    grid-column: 5;
+    text-align: right;
+  }
+  .food-row > .row-actions {
+    grid-row: 3;
+    grid-column: 4/6;
+    justify-self: end;
+  }
+  .food-macro {
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .food-macro small {
+    font-size: 10px;
+  }
+  .food-row .icon-button {
+    width: 40px;
+    min-width: 40px;
+    height: 38px;
+  }
+  .food-row > .food-name > strong {
+    font-size: 15px;
+  }
+  .meal-section .section-heading > .row-actions .icon-button {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+  }
+  .nutrition-preview {
+    padding: 12px;
+    gap: 6px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .nutrition-preview strong {
+    font-size: 18px;
+  }
+}

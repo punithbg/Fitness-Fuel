@@ -1,0 +1,149 @@
+.directory-toolbar,
+.directory-actions,
+.directory-filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.directory-toolbar {
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.directory-filters {
+  align-items: end;
+  margin: 24px 0 16px;
+}
+.directory-filters > label:not(.checkbox):not(.search) {
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.directory-filters .search {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+.directory-filters .checkbox {
+  min-height: 42px;
+}
+.directory-import {
+  padding: 20px 0;
+  border-block: 1px solid var(--line);
+}
+.directory-import h2 {
+  font-size: 18px;
+}
+.directory-import p {
+  margin: 12px 0;
+}
+.directory-table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  border-block: 1px solid var(--line);
+}
+.directory-table {
+  width: 100%;
+  min-width: 980px;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.directory-table th,
+.directory-table td {
+  padding: 14px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: right;
+  vertical-align: top;
+  font-variant-numeric: tabular-nums;
+}
+.directory-table th:first-child {
+  width: 34%;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.directory-table th:last-child {
+  width: 130px;
+}
+.directory-table thead {
+  background: var(--subtle-surface);
+}
+.directory-table thead small,
+.directory-food-meta {
+  display: block;
+  font-weight: 400;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.directory-table tbody th {
+  font-weight: 400;
+}
+.directory-table details {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.directory-table details p {
+  margin: 8px 0;
+}
+.directory-table summary {
+  cursor: pointer;
+}
+@media (max-width: 700px) {
+  .directory-table {
+    min-width: 0;
+  }
+  .directory-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  .directory-table tbody,
+  .directory-table tbody tr {
+    display: grid;
+  }
+  .directory-table tbody tr {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    padding-block: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  .directory-table tbody th,
+  .directory-table tbody td {
+    border: 0;
+    padding: 10px 6px;
+    text-align: left;
+  }
+  .directory-table tbody th:first-child {
+    grid-column: 1 / -1;
+    width: auto;
+  }
+  .directory-table tbody td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 4px;
+    color: var(--muted);
+    font-size: 11px;
+  }
+  .directory-table tbody td:last-child {
+    grid-column: 1 / -1;
+  }
+  .directory-table .row-actions {
+    justify-content: flex-end;
+  }
+  .directory-actions {
+    width: 100%;
+  }
+  .directory-actions .button {
+    flex: 1 1 145px;
+    white-space: normal;
+  }
+  .directory-filters > label:not(.checkbox):not(.search) {
+    flex: 1 1 130px;
+    min-width: 0;
+  }
+  .directory-filters select {
+    width: 100%;
+  }
+}

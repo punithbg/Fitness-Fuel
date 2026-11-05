@@ -1,0 +1,154 @@
+:root {
+  font-family: 'Source Sans 3', sans-serif;
+  color: var(--ink);
+  background: var(--page);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+}
+* {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+button,
+a {
+  touch-action: manipulation;
+}
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+button,
+select,
+input,
+textarea {
+  border-radius: 6px;
+}
+input,
+select,
+textarea {
+  min-width: 0;
+  max-width: 100%;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 10px 12px;
+  min-height: 44px;
+}
+input[type='date'],
+input[type='time'] {
+  min-width: 0;
+}
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--green);
+}
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+textarea {
+  resize: vertical;
+}
+a {
+  color: var(--green);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--green-hover);
+}
+svg {
+  flex-shrink: 0;
+}
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+h1,
+h2,
+h3 {
+  overflow-wrap: anywhere;
+}
+h1,
+h2 {
+  font-family: 'Manrope', sans-serif;
+}
+h1 {
+  font-size: 29px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+h2 {
+  font-size: 19px;
+  line-height: 1.45;
+  font-weight: 700;
+}
+h3 {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+small {
+  font-size: 13px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+progress {
+  appearance: none;
+  border: 0;
+  display: block;
+  width: 100%;
+  height: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+  background: var(--subtle-surface);
+}
+progress::-webkit-progress-bar {
+  background: var(--subtle-surface);
+}
+progress::-webkit-progress-value {
+  background: var(--bar-color);
+}
+progress::-moz-progress-bar {
+  background: var(--bar-color);
+}
+@media (max-width: 1200px) {
+  h1 {
+    font-size: 26px;
+  }
+}
+@media (max-width: 700px) {
+  h2 {
+    font-size: 18px;
+  }
+}

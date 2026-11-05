@@ -1,0 +1,228 @@
+body {
+  background: var(--page);
+}
+.nutrient-bar.tone-0 {
+  --bar-color: var(--coral);
+}
+.nutrient-bar.tone-1 {
+  --bar-color: var(--gold);
+}
+.nutrient-bar.tone-2 {
+  --bar-color: var(--blue);
+}
+.nutrient-bar.tone-3 {
+  --bar-color: var(--fiber);
+}
+.nutrient-bar.tone-4 {
+  --bar-color: var(--primary);
+}
+.meal-visual.visual-0 {
+  background: var(--gold-bg);
+  color: var(--gold);
+}
+.meal-visual.visual-1 {
+  background: var(--coral-bg);
+  color: var(--coral);
+}
+.meal-visual.visual-2 {
+  background: var(--blue-bg);
+  color: var(--blue);
+}
+.status-dot {
+  background: var(--green);
+}
+.modal {
+  background: var(--surface);
+}
+.sidebar {
+  background: linear-gradient(165deg, var(--sidebar), var(--subtle-surface));
+}
+.sidebar::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--green) 0 45%,
+    var(--coral-accent) 45% 70%,
+    var(--gold) 70% 85%,
+    var(--blue) 85%
+  );
+}
+.sidebar nav a.active {
+  box-shadow: inset 3px 0 var(--green);
+}
+.brand,
+.mobile-brand {
+  color: var(--ink);
+}
+.brand-mark {
+  color: var(--green);
+}
+.topbar {
+  background: linear-gradient(110deg, var(--surface), var(--subtle-surface));
+}
+.header-tools {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.header-tools .icon-button {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+}
+.stat.green {
+  background: linear-gradient(125deg, var(--surface), var(--green-bg));
+}
+.stat.coral {
+  background: linear-gradient(125deg, var(--surface), var(--coral-bg));
+}
+.stat.gold {
+  background: linear-gradient(125deg, var(--surface), var(--gold-bg));
+}
+.stat.blue {
+  background: linear-gradient(125deg, var(--surface), var(--blue-bg));
+}
+.stat-value {
+  color: var(--ink);
+}
+.stat.green .stat-value {
+  color: var(--green);
+}
+.stat.coral .stat-value {
+  color: var(--coral);
+}
+.stat.gold .stat-value {
+  color: var(--gold);
+}
+.stat.blue .stat-value {
+  color: var(--blue);
+}
+.stat-detail,
+.stat-label,
+.stat-value > span {
+  color: var(--muted);
+}
+.stat::before {
+  width: 32px;
+}
+.button:not(.secondary):not(.danger) {
+  box-shadow: 0 3px 9px var(--shadow);
+}
+.button.secondary,
+input,
+select,
+textarea {
+  background: var(--surface);
+  color: var(--ink);
+}
+.catalog-card,
+.workout-card {
+  box-shadow: 0 4px 16px var(--shadow);
+}
+.catalog-card .tile-icon {
+  background: var(--green-bg);
+  color: var(--green);
+}
+.catalog-card .tile-icon.coral {
+  background: var(--coral-bg);
+  color: var(--coral);
+}
+.catalog-card .tile-icon.gold {
+  background: var(--gold-bg);
+  color: var(--gold);
+}
+.calorie-ring > div {
+  background: var(--page);
+}
+.training-summary {
+  background: linear-gradient(110deg, var(--surface), var(--coral-bg));
+}
+.meal-summary:hover,
+.list-row:hover {
+  background: var(--subtle-surface);
+}
+.badge {
+  background: var(--green-bg);
+  color: var(--green);
+}
+.recharts-default-tooltip {
+  border-radius: 6px;
+  box-shadow: 0 5px 18px var(--shadow);
+}
+.palette-swatches {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+}
+.palette-swatches .swatch {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 3px solid var(--surface);
+  box-shadow: 0 0 0 1px var(--line);
+}
+.swatch.primary {
+  background: var(--primary);
+}
+.swatch.coral {
+  background: var(--coral-accent);
+}
+.swatch.amber {
+  background: var(--gold);
+}
+.swatch.lavender {
+  background: var(--fiber);
+}
+.appearance-section .field {
+  max-width: 300px;
+}
+.page-title {
+  animation: reveal 240ms ease-out;
+}
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 700px) {
+  .mobile-nav {
+    background: var(--surface);
+  }
+  .mobile-nav a.active {
+    background: var(--green-bg);
+    color: var(--green);
+  }
+  .header-tools {
+    gap: 4px;
+  }
+  .header-tools .icon-button {
+    width: 36px;
+    height: 36px;
+  }
+  .topbar-actions {
+    gap: 6px;
+  }
+}
+@media (max-width: 430px) {
+  .topbar-actions:not(:has(.date-picker)) {
+    flex-basis: auto;
+    padding: 0;
+    border: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-title {
+    animation: none;
+  }
+}

@@ -1,0 +1,63 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+test-results
+playwright-report
+test-results-cloud
+.firebase
+.env
+.env.*
+!.env.example
+backups
+
+# Local Firebase project selection and private credentials
+.firebaserc
+*service-account*.json
+*serviceAccount*.json
+*firebase-adminsdk*.json
+credentials*.json
+client_secret*.json
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+
+# Private journal exports and local archives
+*.xlsx
+*.xls
+*.zip
+*.7z
+*.bak
+*.backup
+*.db
+*.sqlite
+*.sqlite3
+fitness-and-fuel-*.json
+form-and-fuel-*.json
+
+# Generated checks and compiler caches
+coverage/
+*.tsbuildinfo
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

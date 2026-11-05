@@ -1,0 +1,119 @@
+input[type='checkbox'] {
+  min-height: 18px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--green);
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 17px;
+  min-width: 0;
+}
+.field > span {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 18px;
+}
+.form-grid .full {
+  grid-column: 1/-1;
+}
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  min-height: 44px;
+}
+.form-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 22px;
+  margin-top: 12px;
+  border-top: 1px solid var(--line);
+}
+.modal {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 24px 100px var(--shadow);
+  width: min(540px, calc(100% - 24px));
+  max-height: calc(100dvh - 40px);
+  padding: 0;
+  color: var(--ink);
+  overscroll-behavior: contain;
+}
+.modal.wide {
+  width: min(740px, calc(100% - 24px));
+}
+.modal::backdrop {
+  background: var(--backdrop);
+  backdrop-filter: blur(3px);
+}
+.modal-content {
+  padding: 26px;
+}
+.modal-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+.modal-heading h2 {
+  font-size: 22px;
+}
+@media (max-width: 700px) {
+  .modal-content {
+    padding: 20px;
+  }
+  .modal {
+    max-height: calc(100dvh - 24px);
+  }
+  .modal-heading {
+    margin-bottom: 22px;
+  }
+  .modal-heading h2 {
+    font-size: 21px;
+  }
+  .form-grid {
+    gap: 0 12px;
+  }
+  .field > span {
+    font-size: 12px;
+  }
+  .field input,
+  .field select,
+  .field textarea {
+    font-size: 16px;
+  }
+  .form-footer {
+    padding-top: 18px;
+  }
+  .form-footer .button {
+    min-height: 46px;
+    flex: 1;
+  }
+}
+@media (max-width: 430px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .form-grid .full {
+    grid-column: auto;
+  }
+  .modal-content {
+    padding: 18px;
+  }
+}

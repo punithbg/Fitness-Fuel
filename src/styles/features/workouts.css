@@ -1,0 +1,204 @@
+.workout-list {
+  display: grid;
+  gap: 24px;
+}
+.workout-card {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 7px;
+  padding: 25px;
+}
+.workout-card h2 {
+  font-size: 21px;
+}
+.workout-card > .section-heading {
+  margin-bottom: 18px;
+}
+.workout-meta {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 12px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+}
+.workout-meta > span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.logged-exercise {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+}
+.logged-exercise h3 {
+  font-size: 16px;
+}
+.logged-exercise p {
+  font-size: 12px;
+  margin-top: 5px;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.set-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+.set-chips > span {
+  background: var(--surface);
+  padding: 8px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+}
+.set-chips small {
+  padding-right: 8px;
+  color: var(--muted);
+  font-size: 10px;
+}
+.set-chips em {
+  font-size: 10px;
+  font-style: normal;
+  color: var(--muted);
+  display: block;
+  text-align: right;
+  margin-top: 4px;
+}
+.workout-notes {
+  font-size: 13px;
+  color: var(--muted);
+  padding-top: 19px;
+  overflow-wrap: anywhere;
+}
+.exercise-editor {
+  border-top: 1px solid var(--line);
+  padding: 20px 0;
+}
+.exercise-editor .section-heading {
+  margin-bottom: 14px;
+}
+.set-table {
+  margin-bottom: 8px;
+}
+.set-row,
+.set-labels {
+  display: grid;
+  grid-template-columns: 35px repeat(3, minmax(0, 1fr)) 36px;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 9px;
+}
+.set-labels {
+  font-size: 11px;
+  color: var(--muted);
+}
+.set-row input {
+  width: 100%;
+}
+.set-number {
+  background: var(--subtle-surface);
+  color: var(--muted);
+  font-size: 12px;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 4px;
+}
+.exercise-editor .field {
+  margin: 15px 0 0;
+}
+.add-exercise-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  margin: 12px 0 22px;
+}
+.add-exercise-row .field {
+  flex: 1;
+  margin: 0;
+}
+@media (max-width: 1000px) {
+  .logged-exercise {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .set-chips {
+    justify-content: flex-start;
+  }
+}
+@media (max-width: 700px) {
+  .workout-card {
+    padding: 18px;
+  }
+  .workout-card h2 {
+    font-size: 18px;
+  }
+  .workout-card > .section-heading {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .workout-card > .section-heading > .row-actions {
+    margin-left: auto;
+  }
+  .workout-meta {
+    gap: 12px;
+  }
+  .set-chips > span {
+    font-size: 12px;
+  }
+  .logged-exercise {
+    gap: 14px;
+  }
+  .set-row,
+  .set-labels {
+    grid-template-columns: 25px repeat(3, minmax(0, 1fr)) 44px;
+    gap: 7px;
+  }
+  .set-row input {
+    padding: 8px;
+    font-size: 16px;
+  }
+  .set-row .icon-button {
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+  }
+  .set-number {
+    width: 23px;
+    height: 25px;
+  }
+  .set-labels {
+    font-size: 11px;
+  }
+  .exercise-editor .section-heading {
+    gap: 8px;
+  }
+  .exercise-editor h3 {
+    font-size: 16px;
+  }
+  .exercise-editor .icon-button {
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+  }
+  .add-exercise-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .add-exercise-row .button {
+    align-self: flex-end;
+  }
+}
+@media (max-width: 430px) {
+  .exercise-editor .section-heading {
+    align-items: flex-start;
+  }
+}

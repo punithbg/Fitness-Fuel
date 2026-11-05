@@ -1,0 +1,105 @@
+.auth-screen {
+  width: min(100% - 40px, 560px);
+  margin: 12vh auto;
+  padding: 32px 0;
+  border-top: 3px solid var(--primary);
+}
+.auth-screen h1 {
+  font-size: 2.5rem;
+  margin: 20px 0 28px;
+  letter-spacing: 0;
+}
+.auth-screen h2 {
+  font-size: 1.25rem;
+}
+.auth-screen p {
+  color: var(--muted);
+  line-height: 1.65;
+}
+.auth-screen .button {
+  margin: 12px 12px 0 0;
+}
+.auth-mark {
+  color: var(--primary);
+}
+.login-content { display: grid; gap: 16px; }
+.login-content p { margin: 0; overflow-wrap: anywhere; }
+.auth-options { display: grid; gap: 12px; }
+.auth-options .button { width: 100%; min-height: 46px; justify-content: center; white-space: normal; }
+.auth-tabs { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--line); }
+.auth-tabs button { padding: 12px; color: var(--muted); background: transparent; border: 0; border-bottom: 2px solid transparent; font: inherit; cursor: pointer; }
+.auth-tabs button[aria-selected='true'] { color: var(--primary); border-bottom-color: var(--primary); }
+.auth-back { justify-self: start; }
+.password-input { position: relative; display: flex; align-items: center; }
+.password-input input { min-width: 0; width: 100%; padding-right: 50px; }
+.password-input .icon-button { position: absolute; right: 5px; }
+.auth-submit { width: 100%; justify-content: center; margin: 8px 0 16px; min-height: 46px; }
+.connection-banner {
+  padding: 10px 14px;
+  margin: 0 0 20px;
+  border-left: 3px solid var(--primary);
+  background: var(--primary-bg);
+  color: var(--ink);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+.account-address,
+.local-profile strong {
+  overflow-wrap: anywhere;
+}
+.local-profile > div {
+  min-width: 0;
+}
+.backup-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 16px 0;
+}
+.backup-actions .button {
+  white-space: normal;
+  min-height: 42px;
+}
+.backup-section .text-button {
+  white-space: normal;
+  text-align: left;
+  margin: 8px 16px 8px 0;
+}
+.backup-preview {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.backup-preview > .button {
+  margin: 12px 12px 0 0;
+}
+.restore-option {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 16px;
+}
+.restore-option input {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  margin-top: 3px;
+}
+.conflict-list {
+  max-height: 240px;
+  overflow: auto;
+  overflow-wrap: anywhere;
+  padding-left: 22px;
+}
+@media (max-width: 600px) {
+  .backup-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .backup-actions .button {
+    justify-content: center;
+  }
+  .auth-screen {
+    margin-top: 8vh;
+  }
+}
