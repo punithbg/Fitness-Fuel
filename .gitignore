@@ -21,7 +21,6 @@ test-results-cloud
 backups
 
 # Local Firebase project selection and private credentials
-.firebaserc
 *service-account*.json
 *serviceAccount*.json
 *firebase-adminsdk*.json
